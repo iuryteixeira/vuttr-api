@@ -12,7 +12,6 @@ import javax.persistence.SequenceGenerator;
 
 import com.bossabox.vuttr.api.domain.AuditedEntity;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +21,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @Entity(name = "tools")
 public class Tool extends AuditedEntity {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tool_generator")

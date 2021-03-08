@@ -3,9 +3,12 @@ package com.bossabox.vuttr.api.controller.dto;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.bossabox.vuttr.api.domain.tool.Tool;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
@@ -14,20 +17,21 @@ import lombok.NoArgsConstructor;
  * @author Iury Teixeira
  *
  */
-@Data
+@SuppressWarnings("serial")
+@Getter
 @NoArgsConstructor
 public class ToolDTO implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
+	@NotBlank(message = "Título deve ser preenchido")
 	private String title;
 
+	@NotBlank(message = "Link não preenchido")
 	private String link;
 
+	@NotBlank(message = "Forneceça uma descrição para a ferramenta")
 	private String description;
 
+	@Size(min = 1, message = "Insira ao menos uma tag para a ferramenta")
 	private Set<String> tags;
 
 	/**
