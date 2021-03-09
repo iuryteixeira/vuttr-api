@@ -21,7 +21,7 @@ public class ToolApplicationImpl implements ToolApplication {
 	@Override
 	public Tool create(Tool tool) {
 		if (toolRepository.findByTitle(tool.getTitle()) != null) {
-			throw new CustomException("title", "Ferramenta " + tool.getTitle() + " já cadastrada!", 400);
+			throw new CustomException("title", "Ferramenta " + tool.getTitle() + " já cadastrada!", 200);
 		}
 		return toolRepository.save(tool);
 	}
