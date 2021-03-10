@@ -1,4 +1,4 @@
-package com.bossabox.vuttr.api.controller.dto;
+package com.bossabox.vuttr.api.controller.dto.tool;
 
 import java.io.Serializable;
 import java.util.Set;

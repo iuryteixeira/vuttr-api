@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bossabox.vuttr.api.application.ToolApplication;
-import com.bossabox.vuttr.api.controller.dto.ToolDTO;
+import com.bossabox.vuttr.api.controller.dto.tool.ToolDTO;
 import com.bossabox.vuttr.api.domain.tool.Tool;
 import com.bossabox.vuttr.api.exception.CustomException;
 import com.bossabox.vuttr.api.exception.ErrorDTO;
@@ -39,13 +39,12 @@ public class ToolController {
 
 	@Operation(summary = "Create a tool")
 	@ApiResponses(value = {
-
 			@ApiResponse(responseCode = "200", description = "Title already exist", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))),
-			@ApiResponse(responseCode = "201", description = "Tool created", content = {
+			@ApiResponse(responseCode = "201", description = "Tool create", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Tool.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid fields", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))) })
 	@PostMapping("/")
-	public ResponseEntity<Object> create(@RequestBody @Valid ToolDTO toolDTO) {
+	public ResponseEntity<?> create(@RequestBody @Valid ToolDTO toolDTO) {
 		try {
 			return new ResponseEntity<>(toolApplication.create(toolDTO.createTool()), HttpStatus.CREATED);
 		} catch (CustomException e) {
@@ -54,10 +53,12 @@ public class ToolController {
 	}
 
 	@Operation(summary = "Find list tools by tag name")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "List tools found", content =  @Content(mediaType = "application/json", 
+						array = @ArraySchema(schema = @Schema(implementation = Tool.class)))) })
 	@GetMapping
 	public ResponseEntity<List<Tool>> findByTag(
 			@Parameter(description = "tag of tool to be searched", example = "node") @RequestParam String tag) {
-
 		return new ResponseEntity<>(toolApplication.findByTag(tag), HttpStatus.OK);
 	}
 
@@ -78,8 +79,8 @@ public class ToolController {
 
 	@Operation(summary = "List all tools")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "List all tools", content = @Content(mediaType = "application/json"))
-	})
+			@ApiResponse(responseCode = "200", description = "List all tools", content = @Content(mediaType = "application/json", 
+					array = @ArraySchema(schema = @Schema(implementation = Tool.class)))) })
 	@GetMapping(value = "/")
 	public ResponseEntity<List<Tool>> all() {
 		return new ResponseEntity<>(toolApplication.list(), HttpStatus.OK);
@@ -87,13 +88,11 @@ public class ToolController {
 
 	@Operation(summary = "Remove a tool by id")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "204", description = "Tool Deleted",
-			content = @Content(mediaType = "application/json")),
+			@ApiResponse(responseCode = "204", description = "Tool Deleted", content = @Content(mediaType = "application/json")),
 
-			@ApiResponse(responseCode = "404", description = "Tool not found by used id", 
-			content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))) })
+			@ApiResponse(responseCode = "404", description = "Tool not found by used id", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))) })
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> remove(
+	public ResponseEntity<?> remove(
 			@Parameter(description = "id of tool to be deleted", example = "2") @PathVariable("id") Long id) {
 		try {
 			toolApplication.remove(id);
