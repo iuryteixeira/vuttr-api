@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +53,11 @@ public class ToolController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param tag
+	 * @return
+	 */
 	@Operation(summary = "Find list tools by tag name")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "List tools found", content =  @Content(mediaType = "application/json", 
@@ -59,9 +65,19 @@ public class ToolController {
 	@GetMapping
 	public ResponseEntity<List<Tool>> findByTag(
 			@Parameter(description = "tag of tool to be searched", example = "node") @RequestParam String tag) {
+		System.out.println("thread: "+Thread.currentThread());	
 		return new ResponseEntity<>(toolApplication.findByTag(tag), HttpStatus.OK);
 	}
 
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@Operation(summary = "Find a tool by id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Response found Tool", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Tool.class))),

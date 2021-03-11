@@ -10,6 +10,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 public class VuttrApplication {
 
+	/**
+	 * start application method
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(VuttrApplication.class, args);
 	}
