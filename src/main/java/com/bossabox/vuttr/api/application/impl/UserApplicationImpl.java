@@ -1,8 +1,8 @@
 package com.bossabox.vuttr.api.application.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +19,13 @@ public class UserApplicationImpl implements UserApplication {
 	private UserRepository userRepository;
 
 	@Autowired
-	private PasswordEncoder encoder;
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public User create(final String username, final String password) {
-
-		//exists user validate
-		if (userRepository.existsByUsername(username)) {
-			throw new CustomException("username", "Nome de Usuário já cadastrado", 200);
-		}
-
+		validate(username);
 		// For this project only exist user admin
-		final User user = new User(username, encoder.encode(password), Role.ADMIN);
+		final User user = new User(username, passwordEncoder.encode(password), Role.ADMIN);
 		return userRepository.save(user);
 	}
 
@@ -45,9 +40,15 @@ public class UserApplicationImpl implements UserApplication {
 	}
 
 	@Override
-	public User login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> list() {
+		return userRepository.findAll();
+	}
+
+	private void validate(String username) {
+		// exists user validate
+		if (userRepository.existsByUsername(username)) {
+			throw new CustomException("username", "Nome de usuário já cadastrado", 200);
+		}
 	}
 
 }

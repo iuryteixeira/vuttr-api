@@ -17,14 +17,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
-	
+
+	/**
+	 * Here is intercepted a exception Argument Not valid for custom error.
+	 */
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
 		// error response body object
 		final Map<String, Object> body = new HashMap<>();
-		
+
 		// errors found
 		final List<ErrorDTO> erros = new ArrayList<>();
 

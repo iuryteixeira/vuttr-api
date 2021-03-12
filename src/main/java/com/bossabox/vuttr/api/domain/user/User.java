@@ -16,6 +16,16 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * This class represent the domain model of User and only exposes the Gettes
+ * methods, so that the object is immutable.
+ * 
+ * Represent the users table.
+ * 
+ * @author Iury Teixeira
+ *
+ */
 @Getter
 @NoArgsConstructor // to JPA
 @EqualsAndHashCode(callSuper = false)
@@ -41,6 +51,13 @@ public class User extends AuditedEntity {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
+	/**
+	 * All users for moment should be ADMIN
+	 * 
+	 * @param username
+	 * @param password
+	 * @param role
+	 */
 	public User(String username, String password, Role role) {
 		super();
 		this.username = username;

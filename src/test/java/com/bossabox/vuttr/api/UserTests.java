@@ -2,42 +2,48 @@ package com.bossabox.vuttr.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.bossabox.vuttr.api.application.UserApplication;
+import com.bossabox.vuttr.api.domain.user.User;
 
 @SpringBootTest
-@TestMethodOrder(OrderAnnotation.class)
 class UserTests {
 
 	@Autowired
 	private UserApplication userApplication;
 
-	final String username = "iury-run" + System.currentTimeMillis();
+	private List<User> us;
+
+	@BeforeEach
+	void setup() {
+		us = userApplication.list();
+	}
 
 	@Test
-	@Order(1)
-	void testCreate() {
+	void testCreateUser() {
+		final String username = "user_master" + System.currentTimeMillis();
 		assertThat(userApplication.create(username, "123123").getUsername()).isEqualTo(username);
 	}
 
 	@Test
-	@Order(2)
 	void testExistisUser() {
-		Boolean b = userApplication.existsByUsername(username);
-		System.out.println(b);
-		assertThat(b).isEqualTo(true);
+		if (!us.isEmpty()) {
+			assertThat(userApplication.existsByUsername(us.get(0).getUsername())).isEqualTo(true);
+		}
 	}
 
 	@Test
-	@Order(3)
-	void testFindUser() {
-		assertThat(userApplication.findByUsername(username).getUsername()).isEqualTo(username);
+	void testFindUsername() {
+		if (!us.isEmpty()) {
+			assertThat(userApplication.findByUsername(us.get(0).getUsername()).getUsername())
+					.isEqualTo(us.get(0).getUsername());
+		}
 	}
 
 }

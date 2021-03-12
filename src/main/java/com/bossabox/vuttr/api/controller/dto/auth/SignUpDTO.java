@@ -8,6 +8,12 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class represent the register operation of user
+ * 
+ * @author Iury Teixeira
+ *
+ */
 @SuppressWarnings("serial")
 @Getter
 @NoArgsConstructor

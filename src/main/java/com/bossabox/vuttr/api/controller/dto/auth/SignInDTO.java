@@ -8,6 +8,12 @@ import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Class to transfer login/auth data
+ * 
+ * @author franc
+ *
+ */
 @SuppressWarnings("serial")
 @Getter
 @NoArgsConstructor

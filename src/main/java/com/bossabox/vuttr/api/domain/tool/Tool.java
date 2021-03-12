@@ -16,11 +16,28 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * This class represent the domain model of Tools and only exposes the Gettes
+ * methods, so that the object is immutable.
+ * 
+ * The tags can't repeat.
+ * 
+ * Represent the tools table.
+ * 
+ * @author Iury Teixeira
+ *
+ */
 @Getter
-@NoArgsConstructor //to JPA
+@NoArgsConstructor // to JPA
 @EqualsAndHashCode(callSuper = false)
 @Entity(name = "tools")
 public class Tool extends AuditedEntity {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tool_generator")

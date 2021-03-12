@@ -17,7 +17,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- *This class 
+ * This class is responsible for keep audit properties of entities, createdAt,
+ * updatedAt and others like: createdBy and updatedBy.
  *
  * @author Iury Teixeira
  */
@@ -29,23 +30,11 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
 public abstract class AuditedEntity implements Serializable {
 
-
 	@CreatedDate
 	@Column(nullable = false, updatable = false)
 	private Date createdAt;
 
 	@LastModifiedDate
 	private Date updatedAt;
-	
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn private User createdBy;
-	 * 
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn private User updatedBy;
-	 */
-
 
 }

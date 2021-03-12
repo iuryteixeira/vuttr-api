@@ -19,6 +19,12 @@ import com.bossabox.vuttr.api.domain.user.Role;
 import com.bossabox.vuttr.api.domain.user.User;
 import com.bossabox.vuttr.api.domain.user.UserRepository;
 
+/**
+ * Verify and some properties user token in database.
+ * 
+ * @author Iury Teixeira
+ *
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

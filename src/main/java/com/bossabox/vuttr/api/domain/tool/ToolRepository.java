@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ToolRepository extends JpaRepository<Tool, Long> {
 	Tool findByTitle(String title);
+
 	List<Tool> findByTags(String tag);
 }

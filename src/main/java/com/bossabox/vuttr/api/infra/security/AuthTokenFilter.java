@@ -20,7 +20,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.bossabox.vuttr.api.infra.security.jwt.JwtUtil;
 
-
+/**
+ * validate token
+ * 
+ * @author Iury Teixeira
+ *
+ */
 public class AuthTokenFilter extends OncePerRequestFilter {
 	
 	@Autowired
@@ -35,12 +40,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		try {
-			String jwt = parseJwt(request);
+			final String jwt = parseJwt(request);
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
-				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+				final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+				final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 						userDetails, null, userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 

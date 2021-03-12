@@ -22,11 +22,13 @@ public class DatabaseConfig {
 	 * Called by Spring to work database connection. It's ready two way: system
 	 * variable and dotenv variable.
 	 * 
+	 * The first option is search a environment variable in server/machine, the second in dot env.
+	 * 
 	 * @return DataSource
 	 */
 	@Bean
 	public DataSource dataSource() {
-		String dbUrl = System.getenv("SPRING_DATASOURCE_URL");// HEROKU
+		String dbUrl = System.getenv("SPRING_DATASOURCE_URL");// Heroku
 		if (dbUrl == null) {
 			Dotenv dotenv = Dotenv.load();
 			dbUrl = dotenv.get("DATASOURCE_URL");

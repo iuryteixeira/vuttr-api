@@ -30,6 +30,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
+/**
+ * 
+ * @author Iury Teixeira
+ *
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
@@ -69,7 +74,7 @@ public class AuthController {
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(signInDTO.getUsername(), signInDTO.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtils.generateJwtToken(authentication);
+		final String jwt = jwtUtils.generateJwtToken(authentication);
 		return new ResponseEntity<>(new TokenDTO(jwt), HttpStatus.OK);
 	}
 
