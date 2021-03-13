@@ -6,7 +6,6 @@ build/
 
 #gradlew
 gradlew.bat
-gradle/
 
 ### STS ###
 .apt_generated
