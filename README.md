@@ -23,15 +23,30 @@ API
 * JUnit
 * Mockito
 
+## Documentação
+
+Local
+
+> [http://localhost:3000/docs.html](http://localhost:3000/docs.html)
+
+
+Heroku
+
+> [https://vuttr-iury.herokuapp.com/docs.html](https://vuttr-iury.herokuapp.com/docs.html)
+
+
 ## Passos para executar o projeto
 
-Criar o banco de dados no PostgreSQL
+Criar um banco de dados no PostgreSQL(nome do banco a sua escolha)
 
 Criar a variável de ambiente DATASOURCE_URL. O projeto já encontra-se configurado para realizar a leitura de um arquivo .env
 
-> DATASOURCE_URL=jdbc:[dialect]://[host]:[port]/[dbname]?user=[username]&password=[password]
+```console
+DATASOURCE_URL=jdbc:[dialect]://[host]:[port]/[dbname]?user=[username]&password=[password]
+```
 
 Comando para build e execução
 
-> ./gradlew bootRun
-
+```console
+./gradlew bootRun
+```
