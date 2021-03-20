@@ -8,7 +8,8 @@ public class IndexController {
 
 	@GetMapping({ "", "/" })
 	public String index() {
-		return "redirect:/docs.html";
+		return "API OK. Para acessar a documentação <a href=\"/docs.html\">clique aqui</a>"
+				+ "";
 	}
 
 }
