@@ -10,18 +10,24 @@ API
 
 * [PostgreSQL](https://www.postgresql.org)
 
+## Java 11
+
 ## Dependências
 
 * Spring Web
 * SpringBoot DevTools
 * Spring Security
+* Spring Validation
 * Thymeleaf
+* Spring Data JPA
 * PostgreSQL
-* JWT
+* JWT(jjwt)
 * Lombok
 * Dotenv
 * JUnit
 * Mockito
+
+
 
 ## Documentação
 

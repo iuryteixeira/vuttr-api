@@ -42,6 +42,11 @@ public class ToolController {
 	@Autowired
 	private ToolApplication toolApplication;
 
+	/**
+	 * 
+	 * @param toolDTO
+	 * @return
+	 */
 	@Operation(summary = "Create a tool")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Title already exist", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class))),
@@ -97,6 +102,11 @@ public class ToolController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	
+	/**
+	 * 
+	 * @return
+	 */
 	@Operation(summary = "List all tools")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "List all tools", content = @Content(mediaType = "application/json", 
@@ -106,6 +116,11 @@ public class ToolController {
 		return new ResponseEntity<>(toolApplication.list(), HttpStatus.OK);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@Operation(summary = "Remove a tool by id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "204", description = "Tool Deleted", content = @Content(mediaType = "application/json")),

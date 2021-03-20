@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Response token at login.
+ * Response login token.
  * 
  * @author Iury Teixeira
  *
