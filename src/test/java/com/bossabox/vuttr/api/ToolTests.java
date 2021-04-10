@@ -12,6 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.bossabox.vuttr.api.application.ToolApplication;
 import com.bossabox.vuttr.api.domain.tool.Tool;
 
+/**
+ * Test class for tools operations
+ * @author franc
+ *
+ */
 @SpringBootTest
 public class ToolTests {
 

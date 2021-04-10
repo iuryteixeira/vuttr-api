@@ -18,7 +18,6 @@ API
 * SpringBoot DevTools
 * Spring Security
 * Spring Validation
-* Thymeleaf
 * Spring Data JPA
 * PostgreSQL
 * JWT(jjwt)
@@ -28,6 +27,9 @@ API
 * Mockito
 
 
+## Testes
+
+> Os testes estão localizados em **src/test**
 
 ## Documentação
 
@@ -51,7 +53,7 @@ Criar a variável de ambiente DATASOURCE_URL. O projeto já encontra-se configur
 DATASOURCE_URL=jdbc:[dialect]://[host]:[port]/[dbname]?user=[username]&password=[password]
 ```
 
-Comando para build e execução
+Comando para build e execução:
 
 ```console
 ./gradlew bootRun
